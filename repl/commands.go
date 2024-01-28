@@ -1,6 +1,10 @@
 package repl
 
-import "github.com/lilleyz7/nutritionCLI/handlers"
+import (
+	"fmt"
+
+	"github.com/lilleyz7/nutritionCLI/handlers"
+)
 
 type command struct {
 	Name        string
@@ -8,12 +12,20 @@ type command struct {
 	Handler     func() error
 }
 
+func HelpHandler() error {
+	commands := getCommands()
+	for key, data := range commands {
+		fmt.Printf("%s: \n\t %s \n", key, data.Description)
+	}
+	return nil
+}
+
 func getCommands() map[string]command {
 	return map[string]command{
 		"help": {
 			Name:        "help",
 			Description: "Displays HELP messsage",
-			Handler:     handlers.HelpHandler,
+			Handler:     HelpHandler,
 		},
 		"exit": {
 			Name:        "exit",
@@ -22,18 +34,23 @@ func getCommands() map[string]command {
 		},
 		"add": {
 			Name:        "random",
-			Description: "get random cocktail recipe",
+			Description: "Follow command with a quatity and name of food to add nutrition to intake",
 			Handler:     handlers.AddHandler,
 		},
 		"search": {
 			Name:        "search",
-			Description: "get results based on user provided name",
+			Description: "Follow cammand with a quatity and name of food to get nutrition facts ",
 			Handler:     handlers.SearchHandler,
 		},
 		"view": {
 			Name:        "search",
-			Description: "get results based on user provided name",
+			Description: "View all consumed foods",
 			Handler:     handlers.ViewHandler,
+		},
+		"remove": {
+			Name:        "remove",
+			Description: "Removes most recent data entry",
+			Handler:     handlers.RemoveHandler,
 		},
 	}
 }

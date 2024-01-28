@@ -7,7 +7,7 @@ import (
 )
 
 func RemoveHandler() error {
-	filePath := "dat.csv"
+	filePath := "data.csv"
 	file, err := os.Open(filePath)
 	if err != nil {
 		fmt.Println("Error opening file:", err)
@@ -52,5 +52,6 @@ func RemoveHandler() error {
 			return err
 		}
 	}
+	fmt.Println("successfully removed")
 	return nil
 }

@@ -25,11 +25,9 @@ func AddEntry(newFact models.NutritionFacts) error {
 
 	file, err := os.OpenFile("./data.csv", os.O_RDWR|os.O_APPEND, os.ModePerm)
 	if err != nil {
-		fmt.Println(err)
 
 		err = CreateCSV()
 		if err != nil {
-			fmt.Println("We did something here")
 			fmt.Println(err)
 		}
 		file, err = os.Open("./data.csv")
@@ -42,7 +40,6 @@ func AddEntry(newFact models.NutritionFacts) error {
 	}
 	defer file.Close()
 
-	fmt.Println(data)
 	writer := csv.NewWriter(file)
 
 	defer writer.Flush()

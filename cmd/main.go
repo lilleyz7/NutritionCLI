@@ -11,9 +11,5 @@ func init() {
 
 func main() {
 	repl.RunREPL()
-	// err := handlers.ViewHandler()
-	// if err != nil {
-	// 	fmt.Println(err)
-	// }
 
 }
