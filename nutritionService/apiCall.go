@@ -35,12 +35,12 @@ func ConvertJSON(url string, target interface{}) error {
 
 	res, err := http.DefaultClient.Do(req)
 	if err != nil {
-		panic(err)
+		return err
 	}
 
 	err = json.NewDecoder(res.Body).Decode(target)
 	if err != nil {
-		panic(err)
+		return err
 	}
 	defer res.Body.Close()
 
